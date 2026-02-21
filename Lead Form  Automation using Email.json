@@ -1,0 +1,531 @@
+{
+  "name": "Lead Form  Automation using Email",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Lead Generation Form",
+        "formDescription": "To keep the track of leads generated",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "First Name"
+            },
+            {
+              "fieldLabel": "Last Name"
+            },
+            {
+              "fieldLabel": "Coder",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Email ID",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Profession",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Student"
+                  },
+                  {
+                    "option": "Employee"
+                  },
+                  {
+                    "option": "Client"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -112,
+        -16
+      ],
+      "id": "259165b9-2541-4ca3-a4ef-da9550b7e482",
+      "name": "On form submission",
+      "webhookId": "543a1469-08d1-4be2-96c3-6b4952f91509"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6aaf79be-0a8a-4d2e-a46a-cbd3a1d46e0e",
+              "leftValue": "={{ $json.Profession }}",
+              "rightValue": "Client",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "6de6a81b-b0b4-4694-8856-e43e23cf1d2d",
+              "leftValue": "={{ $json.Profession }}",
+              "rightValue": "Student",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "93427c79-57d4-4659-9ac4-5d36c33775be",
+              "leftValue": "={{ $json.Profession }}",
+              "rightValue": "Employee",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        304,
+        -16
+      ],
+      "id": "630a95db-fe9a-433a-8474-46a645eac661",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1wMkU--FsTIaeSBWwmg0DDPWVhCmtG0CNnX3GIX4g9Do",
+          "mode": "list",
+          "cachedResultName": "Lead Form",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wMkU--FsTIaeSBWwmg0DDPWVhCmtG0CNnX3GIX4g9Do/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wMkU--FsTIaeSBWwmg0DDPWVhCmtG0CNnX3GIX4g9Do/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Coder",
+              "displayName": "Coder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Profession",
+              "displayName": "Profession",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email ",
+              "displayName": "Email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "submittedAt",
+              "displayName": "submittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "formMode",
+              "displayName": "formMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        96,
+        -16
+      ],
+      "id": "3c3da2c3-cbb6-4773-942c-bf3ece5dcf25",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "91MMd8eIAIQLAATQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Profession }}",
+                    "rightValue": "Client",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "016f0fdc-27a4-4060-a4c8-43d1181def9f"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "0f598ee3-cb11-42bc-9b11-764be76247a0",
+                    "leftValue": "={{ $json.Profession }}",
+                    "rightValue": "Student",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c9c9fc27-79eb-4dd3-9939-c54fc4241884",
+                    "leftValue": "={{ $json.Profession }}",
+                    "rightValue": "Employee",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        512,
+        -32
+      ],
+      "id": "342523f2-2c66-483b-a066-912244fd8c56",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Filter').item.json['Email ID'] }}",
+        "subject": "=Welcome Mail for Clients!...",
+        "emailType": "text",
+        "message": "=Hii {{ $('Filter').item.json['First Name'] }} ,\nWelcome to the Services. Below are the service details. \n\nThank you ",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        -176
+      ],
+      "id": "f500f80b-c925-414b-a624-2da4d6dda783",
+      "name": "Client_mail",
+      "webhookId": "bd0fd4d0-17fb-4630-bdec-6ef426ad3a96",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FVcDBgZDhnnp4lNN",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email ID'] }}",
+        "subject": "=Welcome Mail for Students!...",
+        "emailType": "text",
+        "message": "=Hii {{ $('Filter').item.json['First Name'] }} ,\nWelcome to the Course. Below are the course details. \n\nThank you ",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        -16
+      ],
+      "id": "1d168699-1726-48ac-966e-65e0ba3b2722",
+      "name": "Student_mail",
+      "webhookId": "bd0fd4d0-17fb-4630-bdec-6ef426ad3a96",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FVcDBgZDhnnp4lNN",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Filter').item.json['Email ID'] }}",
+        "subject": "=Welcome Mail for Employees!...",
+        "emailType": "text",
+        "message": "=Hii {{ $json['First Name'] }}\nWelcome to the Organization. Below are the roles and responsiblities. \n\nThank you",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        144
+      ],
+      "id": "7a5423be-dd1f-4388-9c68-9beae4ac2a20",
+      "name": "Employee_mail",
+      "webhookId": "bd0fd4d0-17fb-4630-bdec-6ef426ad3a96",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FVcDBgZDhnnp4lNN",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "sushmapotadar123@gmail.com",
+        "subject": "Leads Update",
+        "emailType": "text",
+        "message": "Hii Manager, we had got new leads, Thanks",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        -16
+      ],
+      "id": "278ab851-d3a5-4069-8847-d99f706dc085",
+      "name": "Send a message",
+      "webhookId": "592c1b95-0479-47f7-aa41-3daca9bacb18",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FVcDBgZDhnnp4lNN",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Client_mail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Student_mail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Employee_mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Student_mail": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client_mail": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employee_mail": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "7c4d70cb-d525-4e28-8181-9cd4e50dda41",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f71987d840e4352d2921ea34163c920a213c5c9ada8b6a23ffc215d9d0d11500"
+  },
+  "id": "5BVUUYqPzJxxY774",
+  "tags": []
+}
