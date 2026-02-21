@@ -75,5 +75,5 @@ Each lead receives a personalized email using dynamic fields:
 
 
 ## 🖼️ Workflow Image
-<img width="1663" height="784" alt="Screenshot (102)" src="https://github.com/user-attachments/assets/46899d96-d7e8-45f3-8491-625a56e1dd3e" />
+<img width="1663" height="784" alt="Screenshot (102)" src="https://github.com/sandhya-sp137/n8n_Project-Lead-Form-Automation-using-Email/blob/da5ca1ba86ee2ab658577a4b8065319c27ae898d/Screenshot%202026-02-21%20163344.png" />
 
